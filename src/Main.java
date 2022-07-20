@@ -26,11 +26,22 @@ public class Main {
         double CC_a = Math.pow(delta_1,2) - 4*Math.pow(delta_0,3);
         double CC_b = Math.pow(CC_a,1/2) + delta_1;
         double CC = Math.pow(CC_b/2, 1/3);
+        double u = (-1 + Math.pow(-3,1/2))/2;
+        double otvet[] = new double[3];
+        double buf;
+        for (int i = 0; i < 3; i++){
+            buf = Math.pow(u,i)*CC;
+            otvet[i] = -(B + Math.pow(u,i)*CC + delta_0/buf)/3*A;
+        }
 
         System.out.println(delta_0);
         System.out.println(delta_1);
         System.out.println(delta);
         System.out.println(CC);
+        System.out.println(u);
+        System.out.println(otvet[0]);
+        System.out.println(otvet[1]);
+        System.out.println(otvet[2]);
 
         FileWriter writerS = new FileWriter("OUTPUT.TXT", false);
         writerS.write(String.valueOf(answer));
