@@ -20,22 +20,17 @@ public class Main {
         int C = sc.nextInt();
         int D = sc.nextInt();
         String answer = "";
-        double B1 = B/A;
-        double B2 = C/A;
-        double B3 = D/A;
-        double p = (-1*B1*B1)/3 + B2;
-        double q = 2*B1*B1*B1/27 - B1*B2/3 + B3;
-        double a = -1*q/2;
-        double b = Math.sqrt(q*q/4 + p*p*p/27);
-        double y = Math.cbrt(a + b) + Math.cbrt(a - b);
+        int delta_0 = B*B - 3*A*C;
+        int delta_1 = 2*B*B*B - 9*A*B*C + 27*A*A*D;
+        double delta = (Math.pow(delta_1,2) - 4*Math.pow(delta_0,3))/27*A*A;
+        double CC_a = Math.pow(delta_1,2) - 4*Math.pow(delta_0,3);
+        double CC_b = Math.pow(CC_a,1/2) + delta_1;
+        double CC = Math.pow(CC_b/2, 1/3);
 
-        double x = y - B1/3;
-
-        if (delta > 0) answer = "tri_kornya" + '\n' + x + '\n' + x1;
-        else if (delta < 0) answer = "odin_koreny" + '\n' + x;
-        else answer = "koreny_kratnosty_3" + '\n' + x;
-
-
+        System.out.println(delta_0);
+        System.out.println(delta_1);
+        System.out.println(delta);
+        System.out.println(CC);
 
         FileWriter writerS = new FileWriter("OUTPUT.TXT", false);
         writerS.write(String.valueOf(answer));
