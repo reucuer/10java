@@ -68,53 +68,25 @@ public class Main {
 
         } else{
             int A_mas[] = mnoj_by_A(A);
-            print(A_mas);
-            int B_mas[] = mnoj_by_A(B);
-            print(B_mas);
-            int int_count = A_mas.length*2+B_mas.length*2;
+            //print(A_mas);
+            int B_mas[] = mnoj_by_A(D);
+            //print(B_mas);
+            int int_count = A_mas.length*B_mas.length;
             int new_mas[] = new int[int_count];
 
-            int ii = -1;
-            int jj = -1;
-            do{
-                ii++;
-                jj++;
-                if (jj == A_mas.length) break;
-                new_mas[ii] = A_mas[jj];
 
-            }while(ii < A_mas.length);
+                for(int i = 0,j = 0; j < A_mas.length; j++) {
+                    for (int k = 0; k < B_mas.length; k++, i++) {
+                        new_mas[i] = A_mas[j] / B_mas[k];
+                        System.out.println(A_mas[j] / B_mas[k]);
+                    }
+                }
 
-            ii = A_mas.length-1;
-            jj = -1;
-            do{
-                ii++;
-                jj++;
-                if (jj == A_mas.length) break;
-                new_mas[ii] = -A_mas[jj];
-
-            }while(ii < int_count-B_mas.length-B_mas.length);
-
-            ii = A_mas.length*2-1;
-            jj = -1;
-            do{
-                ii++;
-                jj++;
-                if (jj == B_mas.length) break;
-                new_mas[ii] = B_mas[jj];
-
-            }while(ii < int_count-B_mas.length);
-
-            ii = A_mas.length*2+B_mas.length-1;
-            jj = -1;
-            do{
-                ii++;
-                jj++;
-                if (jj == B_mas.length) break;
-                new_mas[ii] = -B_mas[jj];
-
-            }while(ii < int_count);
-
-            System.out.println("------------");
+            System.out.println("--------");
+                print(A_mas);
+            System.out.println("--------");
+            print(B_mas);
+            System.out.println("--------");
             print(new_mas);
         }
 
