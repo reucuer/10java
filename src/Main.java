@@ -8,6 +8,8 @@ import java.lang.String;
 import java.util.Arrays;
 import java.lang.Math;
 
+//надо вычислить один действительный корень. он вроде всегда есть
+//надо разделить програмно многочлен на многочлен и получится квадратное уравнение
 
 
 public class Main {
@@ -20,28 +22,23 @@ public class Main {
         int C = sc.nextInt();
         int D = sc.nextInt();
         String answer = "";
-        int delta_0 = B*B - 3*A*C;
-        int delta_1 = 2*B*B*B - 9*A*B*C + 27*A*A*D;
-        double delta = (Math.pow(delta_1,2) - 4*Math.pow(delta_0,3))/27*A*A;
-        double CC_a = Math.pow(delta_1,2) - 4*Math.pow(delta_0,3);
-        double CC_b = Math.pow(CC_a,1/2) + delta_1;
-        double CC = Math.pow(CC_b/2, 1/3);
-        double u = (-1 + Math.pow(-3,1/2))/2;
-        double otvet[] = new double[3];
-        double buf;
-        for (int i = 0; i < 3; i++){
-            buf = Math.pow(u,i)*CC;
-            otvet[i] = -(B + Math.pow(u,i)*CC + delta_0/buf)/3*A;
+        int dis, x = 0, cor_dis, x_1 = 0, x_2 = 0;
+        dis = B*B - 4*A*C;
+        cor_dis = (int)Math.sqrt(dis);
+        if (D == 0) {
+            if (dis == 0){
+                x_1 = -B/2*A;
+            }
+            if (dis > 0){
+                x_1 = (-B + cor_dis)/(2*A);
+                x_2 = (-B - cor_dis)/(2*A);
+            }
         }
+        if (x == x_1 || x == x_2) dis = 0;
 
-        System.out.println(delta_0);
-        System.out.println(delta_1);
-        System.out.println(delta);
-        System.out.println(CC);
-        System.out.println(u);
-        System.out.println(otvet[0]);
-        System.out.println(otvet[1]);
-        System.out.println(otvet[2]);
+        if (dis > 0) answer = String.valueOf(x) + ' ' + String.valueOf(x_1) + ' ' + String.valueOf(x_2);
+        if (dis == 0) answer = String.valueOf(x) + ' ' + String.valueOf(x_1);
+        System.out.println(answer);
 
         FileWriter writerS = new FileWriter("OUTPUT.TXT", false);
         writerS.write(String.valueOf(answer));
