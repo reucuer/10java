@@ -13,6 +13,34 @@ import java.lang.Math;
 
 
 public class Main {
+    public static int[] mnoj_by_A(int A) {
+        int Abc_A = Math.abs(A);
+        boolean AA[] = new boolean[Abc_A+1];
+        int AAA[] = new int[Abc_A];
+        int count = 0;
+        for (int i = 1; i <= Abc_A; i++){
+            AA[i] = false;
+            if (Abc_A % i == 0) {
+                AA[i] = true;
+                count++;
+            }
+        }
+        int[] myArray = new int[count];
+        int j = 0;
+        for (int i = 1; i <= Abc_A; i++) {
+            if (AA[i] == true) {
+                myArray[j] = (int)Math.signum(A)*i;
+                j++;
+            }
+        }
+        return myArray;
+    }
+    public static void print(int A[]){
+        int count = A.length;
+         for(int i = 0; i < count; i++){
+            System.out.println(A[i]);
+        }
+    }
     public static void main(String[] args) throws FileNotFoundException, IOException {
         String path = "INPUT.TXT";
         File file = new File(path);
@@ -33,11 +61,30 @@ public class Main {
                 x_1 = (-B + cor_dis)/(2*A);
                 x_2 = (-B - cor_dis)/(2*A);
             }
-        }
-        if (x == x_1 || x == x_2) dis = 0;
 
-        if (dis > 0) answer = String.valueOf(x) + ' ' + String.valueOf(x_1) + ' ' + String.valueOf(x_2);
-        if (dis == 0) answer = String.valueOf(x) + ' ' + String.valueOf(x_1);
+            if (x == x_1 || x == x_2) dis = 0;
+            if (dis > 0) answer = String.valueOf(x) + ' ' + String.valueOf(x_1) + ' ' + String.valueOf(x_2);
+            if (dis == 0) answer = String.valueOf(x) + ' ' + String.valueOf(x_1);
+
+        } else{
+            int A_mas[] = mnoj_by_A(A);
+            print(A_mas);
+            int B_mas[] = mnoj_by_A(B);
+            print(B_mas);
+            int int_count = A_mas.length*2+B_mas.length*2;
+            int new_mas[] = new int[int_count];
+            for (int i = 0; i < int_count; i++) {
+                for (int j = 0; j < A_mas.length; j++) {
+                    for (int k = 0; k < B_mas.length; k++) {
+                        new_mas[i] = A_mas[j];
+                        new_mas[i + (A_mas.length + 1)] = -A_mas[j];
+                        new_mas[i + (A_mas.length +1 + B_mas.length + 1)] = A_mas[j]/B_mas[k];
+                    }
+                }
+            }
+        }
+
+
         System.out.println(answer);
 
         FileWriter writerS = new FileWriter("OUTPUT.TXT", false);
