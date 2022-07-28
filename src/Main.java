@@ -73,15 +73,49 @@ public class Main {
             print(B_mas);
             int int_count = A_mas.length*2+B_mas.length*2;
             int new_mas[] = new int[int_count];
-            for (int i = 0; i < int_count; i++) {
-                for (int j = 0; j < A_mas.length; j++) {
-                    for (int k = 0; k < B_mas.length; k++) {
-                        new_mas[i] = A_mas[j];
-                        new_mas[i + (A_mas.length + 1)] = -A_mas[j];
-                        new_mas[i + (A_mas.length +1 + B_mas.length + 1)] = A_mas[j]/B_mas[k];
-                    }
-                }
-            }
+
+            int ii = -1;
+            int jj = -1;
+            do{
+                ii++;
+                jj++;
+                if (jj == A_mas.length) break;
+                new_mas[ii] = A_mas[jj];
+
+            }while(ii < A_mas.length);
+
+            ii = A_mas.length-1;
+            jj = -1;
+            do{
+                ii++;
+                jj++;
+                if (jj == A_mas.length) break;
+                new_mas[ii] = -A_mas[jj];
+
+            }while(ii < int_count-B_mas.length-B_mas.length);
+
+            ii = A_mas.length*2-1;
+            jj = -1;
+            do{
+                ii++;
+                jj++;
+                if (jj == B_mas.length) break;
+                new_mas[ii] = B_mas[jj];
+
+            }while(ii < int_count-B_mas.length);
+
+            ii = A_mas.length*2+B_mas.length-1;
+            jj = -1;
+            do{
+                ii++;
+                jj++;
+                if (jj == B_mas.length) break;
+                new_mas[ii] = -B_mas[jj];
+
+            }while(ii < int_count);
+
+            System.out.println("------------");
+            print(new_mas);
         }
 
 
